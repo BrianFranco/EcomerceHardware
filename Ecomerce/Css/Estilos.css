@@ -1,0 +1,109 @@
+﻿*{
+    margin:0px;
+    padding:0px
+}
+.body-flex{
+    background-color:rgb(230,230,230);
+    display:flex;
+    flex-flow:column nowrap;
+    row-gap:20px;
+}
+.header{
+    height:60px;
+    background-color:white;
+    display:flex;
+    flex-direction:row;
+    justify-content:center;
+}
+.header-content{
+    width:80%;
+    display:flex;
+    flex-direction:row;
+    justify-content:space-around;
+    align-items:center;
+}
+.items {
+    font-weight: bold;
+    background-color: cornflowerblue;
+    border: 3px solid blue;
+    border-radius: 4px;
+    
+}
+
+.main-flex{
+    display:flex;
+    flex-direction:row;
+    flex-grow:1;
+    flex-wrap:wrap;
+}
+.hr{
+    width:100%;
+}
+.content-grid{
+    margin:0rem 1rem;
+    display:grid;
+    grid-gap:20px;
+    grid-template-columns:repeat(4,1fr);
+    grid-template-rows:repeat(4,auto);
+}
+.section-grid {
+    grid-column:span 3;
+    display: grid;
+    gap: 1rem;
+    grid-auto-rows: 20rem;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%,15rem),1fr));
+}
+/*
+.section-flex{
+    display:flex;
+    flex-flow:row wrap;
+    justify-content:space-evenly;
+    column-gap:10px;
+    row-gap:10px;
+}
+*/
+.aside-flex{
+    grid-column:span 1;
+    margin:10px;
+    display:flex;
+    flex-flow:column wrap;
+    justify-content:space-evenly;
+}
+.filtro{
+    font-weight:bold;
+    width:30px;
+    background-color:cornflowerblue;
+    border:3px solid blue;
+    border-radius:4px;
+}
+.card {
+    background-color: white;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    column-gap: 10px;
+    box-shadow: 0 0 0 1px rgb(0 0 0 / 15%), 0 2px 3px rgb(0 0 0 / 20%);
+}
+.img{
+    height:250px;
+
+}
+.footer-flex {
+    height: 50px;
+    background-color: black;
+    color: white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+.footer-content{
+    width:80%;
+    display:flex;
+    flex-direction:column;
+    align-content:center;
+}
+.copyright{
+    font-size:0.7rem;
+}
