@@ -39,5 +39,17 @@ namespace Negocio
         {
             return dao.GetArticulosFiltro(consulta);
         }
+        public DataTable GetArticulosCarrito(string carrito)
+        {
+            string consulta = "Cod_A=" + carrito.Replace("-", " OR Cod_A=");
+            DataTable dt = dao.GetArticulos();
+            DataRow[] dr = dt.Select(consulta);
+            DataTable dt2 = dt.Clone();
+            foreach (DataRow row in dr)
+            {
+                dt2.ImportRow(row);
+            }
+            return dt2;
+        }
     }
 }

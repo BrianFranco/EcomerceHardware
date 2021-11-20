@@ -99,11 +99,10 @@
                 <td class="auto-style15">Nombre de Categoria:&nbsp;&nbsp; </td>
                 <td class="auto-style18">
                     <asp:TextBox ID="txbNomCat" runat="server"></asp:TextBox>
-                    <asp:Label ID="LblMsj" runat="server"></asp:Label>
+                    <asp:RequiredFieldValidator ID="rfvNomCat" runat="server" ControlToValidate="txbNomCat" ErrorMessage="Ingrese un nombre de categoría" ForeColor="Red" ValidationGroup="G1">Ingrese un nombre de categoría</asp:RequiredFieldValidator>
                 </td>
                 <td class="auto-style16">
-                    <asp:RequiredFieldValidator ID="rfvNomCat" runat="server" ControlToValidate="txbNomCat" ErrorMessage="Ingrese un nombre de categoria" ForeColor="Red">Ingrese un nombre de categoria</asp:RequiredFieldValidator>
-                </td>
+                &nbsp;</td>
             </tr>
             <tr>
                 <td class="auto-style13">
@@ -112,6 +111,7 @@
                 <td class="auto-style19">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <asp:Button ID="BtnAgregarCategoria" runat="server" Text="Agregar" OnClick="BtnAgregarCategoria_Click" />
+                    <asp:Label ID="LBLDevolucion" runat="server" ForeColor="Red"></asp:Label>
                 </td>
                 <td class="auto-style14"></td>
             </tr>

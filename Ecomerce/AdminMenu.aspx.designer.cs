@@ -42,15 +42,6 @@ namespace Ecomerce
         protected global::System.Web.UI.WebControls.Label LBLUsuarioAdminMenu;
 
         /// <summary>
-        /// Control HPLBuscarProducto.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HPLBuscarProducto;
-
-        /// <summary>
         /// Control hlAgregarCat.
         /// </summary>
         /// <remarks>

@@ -44,16 +44,16 @@ namespace Ecomerce
         }
         void CargarGridView()
         {
-            GvBuscarProducto.DataSource = NegArticulo.GetArticulos();
-            GvBuscarProducto.DataBind();
+            LvProductos.DataSource = NegArticulo.GetArticulos();
+            LvProductos.DataBind();
         }
 
         protected void BTNBuscarProducto_Click(object sender, EventArgs e)
         {
             if (TBXBuscarProducto.Text != string.Empty)
             {
-                GvBuscarProducto.DataSource = NegArticulo.GetArticulosFiltro(TBXBuscarProducto.Text);
-                GvBuscarProducto.DataBind();
+                LvProductos.DataSource = NegArticulo.GetArticulosFiltro(TBXBuscarProducto.Text);
+                LvProductos.DataBind();
                 TBXBuscarProducto.Text = string.Empty;
             }
             else
@@ -61,6 +61,26 @@ namespace Ecomerce
                 CargarGridView();
             }
 
+        }
+        protected void BtnAgregarCarrito_Command(object sender, CommandEventArgs e)
+        {
+            if(e.CommandName == "eventoButton")
+            {
+                if (this.Request.Cookies["Carrito"] == null)
+                {
+                    HttpCookie ck = new HttpCookie("Carrito", e.CommandArgument.ToString())
+                    {
+                        Expires = DateTime.Now.AddMinutes(3),
+                        Path = "/"
+                    };
+                Response.Cookies.Add(ck);
+                } else {
+                    HttpCookie ck = Request.Cookies["Carrito"];
+                    ck.Value = $"{ck.Value}-{e.CommandArgument}";
+                    Response.Cookies.Add(ck);
+                }
+                LBLBuscarProducto.Text = "Se agrego al carrito.";
+            }
         }
     }
 }

@@ -33,6 +33,15 @@ namespace Ecomerce
         protected global::System.Web.UI.WebControls.Label LBLUsuarioBuscarProducto;
 
         /// <summary>
+        /// Control HyperLink1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink HyperLink1;
+
+        /// <summary>
         /// Control TBXBuscarProducto.
         /// </summary>
         /// <remarks>
@@ -51,24 +60,6 @@ namespace Ecomerce
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVBuscarProducto;
 
         /// <summary>
-        /// Control GvBuscarProducto.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GvBuscarProducto;
-
-        /// <summary>
-        /// Control LBLBuscarProducto.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LBLBuscarProducto;
-
-        /// <summary>
         /// Control HPLVolverBuscarProducto.
         /// </summary>
         /// <remarks>
@@ -85,5 +76,23 @@ namespace Ecomerce
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button BTNBuscarProducto;
+
+        /// <summary>
+        /// Control LvProductos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView LvProductos;
+
+        /// <summary>
+        /// Control LBLBuscarProducto.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LBLBuscarProducto;
     }
 }

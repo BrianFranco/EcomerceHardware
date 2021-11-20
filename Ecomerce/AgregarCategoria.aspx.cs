@@ -11,6 +11,7 @@ namespace Ecomerce
 {
     public partial class AgregarCategoria : System.Web.UI.Page
     {
+        NegocioCategoria neg = new NegocioCategoria();
         protected void Page_Load(object sender, EventArgs e)
         {
             string JQueryVer = "1.7.1";
@@ -41,19 +42,37 @@ namespace Ecomerce
         {
             if (rfvNomCat.IsValid)
             {
-                Categoria cat = new Categoria();
-                cat.Nombre_cat = txbNomCat.Text;
-                NegocioCategoria NegCategoria = new NegocioCategoria();
+                try
+                {
+                    int existente = neg.CategoriaExistente(txbNomCat.Text.ToString());
+                    if (existente == 0)
+                    {
+                        int AltaCat = neg.InsertarCategoria(txbNomCat.Text.ToString());
+                        if (AltaCat == 1)
+                        {
+                            LBLDevolucion.ForeColor = System.Drawing.Color.Green;
+                            LBLDevolucion.Text = "La categoria '" + txbNomCat.Text.ToString() + "' se agrego con exito!";
+                            txbNomCat.Text = "";
+                        }
+                        else
+                        {
+                            LBLDevolucion.ForeColor = System.Drawing.Color.Red;
+                            LBLDevolucion.Text = "Se produjo un error al intentar agregar la categoria " + txbNomCat.Text.ToString() + "'";
+                            txbNomCat.Text = "";
+                        }
+                    }
+                    else
+                    {
+                        LBLDevolucion.ForeColor = System.Drawing.Color.Red;
+                        LBLDevolucion.Text = "La categoria que intenta agregar ya existe";
+                        txbNomCat.Text = "";
+                    }
+                }
+                catch (Exception ex)
+                {
 
-                if (NegCategoria.InsertarCategoria(cat) > 0)
-                {
-                    LblMsj.Text = "Se agrego correctamente.";
+                    throw ex;
                 }
-                else
-                {
-                    LblMsj.Text = "No se agrego la categoria.";
-                }
-                txbNomCat.Text = string.Empty;
             }
         }
     }

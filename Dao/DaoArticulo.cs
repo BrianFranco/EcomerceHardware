@@ -42,7 +42,7 @@ namespace Dao
         }
         public DataTable GetArticulosFiltro(string filtro)
         {
-            string consulta = $"select * from Articulos where Cod_A = {int.Parse(filtro)}";
+            string consulta = $"select * from Articulos where Cod_A = {filtro}";
             return Cn.ObtenerTablaxConsulta(consulta);
         }
         public DataTable GetArticulos()

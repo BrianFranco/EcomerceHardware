@@ -63,9 +63,9 @@
                 <td class="auto-style3"></td>
             </tr>
             <tr>
-                <td class="auto-style8">
+<%--                <td class="auto-style8">
                     <asp:HyperLink ID="HPLBuscarProducto" runat="server" NavigateUrl="~/BuscarProductos.aspx">Buscar Producto</asp:HyperLink>
-                </td>
+                </td>--%>
                 <td class="auto-style7">
                     <asp:HyperLink ID="hlAgregarCat" runat="server" NavigateUrl="~/AgregarCategoria.aspx">Agregar Categoria</asp:HyperLink>
                 </td>

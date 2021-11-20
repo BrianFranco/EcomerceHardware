@@ -14,7 +14,7 @@
             <h2>Ecomerce</h2>
             <div>
                 <input type="text"  />
-                <input type="button" value="Buscar"/>
+                <asp:HyperLink ID="HLBuscar" NavigateUrl="~/BuscarProductos.aspx" runat="server">Buscar</asp:HyperLink>
              </div>
             <div>
                 <asp:HyperLink ID="HPLGestionArt" runat="server" ForeColor="Black" NavigateUrl="~/AdminMenu.aspx">Gestionar articulos</asp:HyperLink>
@@ -42,7 +42,7 @@
                 <a class="items"><span>Equipos</span></a>
                 <a class="items"><span>Notebooks</span></a>
             </aside>
-            <section class="section-grid">
+            <section class="section-grid" id="section" runat="server">
                 <div class="card">
                     <img class="img" src="Imagenes/img1.jpg"/>
                     <span>Intel Core I7</span>
