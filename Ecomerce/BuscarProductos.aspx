@@ -64,7 +64,7 @@
                             <td class="auto-style6"></td>
                         </tr>
                         <tr>
-                            <td class="auto-style8">ID Producto:
+                            <td class="auto-style8">Nombre Producto:
                                 <asp:TextBox ID="TBXBuscarProducto" runat="server"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="RFVBuscarProducto" runat="server" ControlToValidate="TBXBuscarProducto" ErrorMessage="Debe ingresar un ID de producto" ForeColor="Red">*</asp:RequiredFieldValidator>
                             </td>
@@ -81,7 +81,7 @@
                                 <asp:ListView ID="LvProductos" runat="server" GroupItemCount="3">
                                     <AlternatingItemTemplate>
                                         <td runat="server" style="background-color:#FFF8DC;">
-                                            <asp:ImageButton ID="ImgBtnProducto" runat="server" Height="100px" ImageUrl='<%# Eval("Img_Url_A") %>' Width="100px" />
+                                            <asp:ImageButton ID="ImgBtnProducto" runat="server" Height="100px" ImageUrl='<%# Eval("Img_Url_A") %>' Width="100px" CommandArgument='<%# Eval("Cod_A")%>' CommandName="eventoImagen" OnCommand="ImgBtnProducto_Command" />
                                             <br />Nombre_A:
                                             <asp:Label ID="Nombre_ALabel" runat="server" Text='<%# Eval("Nombre_A") %>' />
                                             <br />PU_A:
@@ -134,7 +134,7 @@
                                     </InsertItemTemplate>
                                     <ItemTemplate>
                                         <td runat="server" style="background-color:#DCDCDC;color: #000000;">
-                                            <asp:ImageButton ID="ImgBtnProducto" runat="server" Height="100px" ImageUrl='<%# Eval("Img_Url_A") %>' Width="100px" />
+                                            <asp:ImageButton ID="ImgBtnProducto" runat="server" Height="100px" ImageUrl='<%# Eval("Img_Url_A") %>' Width="100px" CommandArgument='<%# Eval("Cod_A")%>' CommandName="eventoImagen" OnCommand="ImgBtnProducto_Command" />
                                             <br />
                                             Nombre_A:
                                             <asp:Label ID="Nombre_ALabel" runat="server" Text='<%# Eval("Nombre_A") %>' />

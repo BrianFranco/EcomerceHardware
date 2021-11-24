@@ -35,9 +35,23 @@ namespace Negocio
         {
             return dao.GetArticulos();
         }
-        public DataTable GetArticulosFiltro(string consulta)
+        public Articulo GetArticulosFiltroxID(string consulta)
         {
-            return dao.GetArticulosFiltro(consulta);
+            DataTable dt = dao.GetArticulosFiltroxID(consulta);
+
+            Articulo art = new Articulo();
+            art.Cod_A = (int)dt.Rows[0]["Cod_A"];
+            art.Nombre_A = dt.Rows[0]["Nombre_A"].ToString();
+            art.Descripcion_A = dt.Rows[0]["Descripcion_A"].ToString();
+            art.ImgUrl_A = dt.Rows[0]["Img_Url_A"].ToString();
+            art.Pu_A = decimal.Parse(dt.Rows[0]["PU_A"].ToString());
+            art.Stock = (int)dt.Rows[0]["Stock_A"];
+            
+            return art;
+        }
+        public DataTable GetArticulosFiltroxNombre(string consulta)
+        {
+            return dao.GetArticulosFiltroxNombre(consulta);
         }
         public DataTable GetArticulosCarrito(string carrito)
         {

@@ -40,9 +40,14 @@ namespace Dao
                 return false;
             }
         }
-        public DataTable GetArticulosFiltro(string filtro)
+        public DataTable GetArticulosFiltroxID(string filtro)
         {
             string consulta = $"select * from Articulos where Cod_A = {filtro}";
+            return Cn.ObtenerTablaxConsulta(consulta);
+        }
+        public DataTable GetArticulosFiltroxNombre(string filtro)
+        {
+            string consulta = $"SELECT * FROM Articulos WHERE Nombre LIKE %{filtro}%";
             return Cn.ObtenerTablaxConsulta(consulta);
         }
         public DataTable GetArticulos()

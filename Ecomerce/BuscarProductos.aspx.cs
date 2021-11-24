@@ -52,7 +52,7 @@ namespace Ecomerce
         {
             if (TBXBuscarProducto.Text != string.Empty)
             {
-                LvProductos.DataSource = NegArticulo.GetArticulosFiltro(TBXBuscarProducto.Text);
+                LvProductos.DataSource = NegArticulo.GetArticulosFiltroxNombre(TBXBuscarProducto.Text);
                 LvProductos.DataBind();
                 TBXBuscarProducto.Text = string.Empty;
             }
@@ -64,22 +64,55 @@ namespace Ecomerce
         }
         protected void BtnAgregarCarrito_Command(object sender, CommandEventArgs e)
         {
-            if(e.CommandName == "eventoButton")
+            if (Session["Usuario"]!=null)
             {
-                if (this.Request.Cookies["Carrito"] == null)
+                if(e.CommandName == "eventoButton")
                 {
-                    HttpCookie ck = new HttpCookie("Carrito", e.CommandArgument.ToString())
+                    HttpCookie ck;
+                    if (this.Request.Cookies["Carrito"] == null)
                     {
-                        Expires = DateTime.Now.AddMinutes(3),
+                        ck = new HttpCookie("Carrito", e.CommandArgument.ToString())
+                        {
+                            Path = "/"
+                        };
+                    } else {
+                        ck = Request.Cookies["Carrito"];
+                        ck.Value = $"{ck.Value}-{e.CommandArgument}";
+                    }
+
+                    ck.Expires = DateTime.Now.AddMinutes(10);
+                    Response.Cookies.Add(ck);
+                    LBLBuscarProducto.Text = "Se agrego al carrito.";
+                }
+            }
+            else
+            {
+                Response.Redirect("Login.aspx");
+            }
+        }
+
+        protected void ImgBtnProducto_Command(object sender, CommandEventArgs e)
+        {
+            if (e.CommandName == "eventoImagen")
+            {
+                HttpCookie ck;
+                if (this.Request.Cookies["Seleccionado"] == null)
+                {
+                    ck = new HttpCookie("Seleccionado")
+                    {
+                        Value= e.CommandArgument.ToString(),
                         Path = "/"
                     };
-                Response.Cookies.Add(ck);
-                } else {
-                    HttpCookie ck = Request.Cookies["Carrito"];
-                    ck.Value = $"{ck.Value}-{e.CommandArgument}";
-                    Response.Cookies.Add(ck);
                 }
-                LBLBuscarProducto.Text = "Se agrego al carrito.";
+                else
+                {
+                    ck = Request.Cookies["Seleccionado"];
+                    ck.Value = e.CommandArgument.ToString();
+                }
+
+                ck.Expires = DateTime.Now.AddMinutes(5);
+                Response.Cookies.Add(ck);
+                Response.Redirect("MostrarProducto.aspx");
             }
         }
     }
