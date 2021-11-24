@@ -47,7 +47,7 @@ namespace Dao
         }
         public DataTable GetArticulosFiltroxNombre(string filtro)
         {
-            string consulta = $"SELECT * FROM Articulos WHERE Nombre LIKE %{filtro}%";
+            string consulta = $"SELECT * FROM Articulos WHERE Nombre_A LIKE '%{filtro}%'";
             return Cn.ObtenerTablaxConsulta(consulta);
         }
         public DataTable GetArticulos()

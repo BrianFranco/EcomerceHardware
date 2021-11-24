@@ -83,7 +83,7 @@
                                         <td runat="server" style="background-color:#FFF8DC;">
                                             <asp:ImageButton ID="ImgBtnProducto" runat="server" Height="100px" ImageUrl='<%# Eval("Img_Url_A") %>' Width="100px" CommandArgument='<%# Eval("Cod_A")%>' CommandName="eventoImagen" OnCommand="ImgBtnProducto_Command" />
                                             <br />Nombre_A:
-                                            <asp:Label ID="Nombre_ALabel" runat="server" Text='<%# Eval("Nombre_A") %>' />
+                                            <asp:Label ID="Nombre_ALabel" AssociatedControlID="ImgBtnProducto" runat="server" Text='<%# Eval("Nombre_A") %>' />
                                             <br />PU_A:
                                             <asp:Label ID="PU_ALabel" runat="server" Text='<%# Eval("PU_A") %>' />
                                             <br />
@@ -137,7 +137,7 @@
                                             <asp:ImageButton ID="ImgBtnProducto" runat="server" Height="100px" ImageUrl='<%# Eval("Img_Url_A") %>' Width="100px" CommandArgument='<%# Eval("Cod_A")%>' CommandName="eventoImagen" OnCommand="ImgBtnProducto_Command" />
                                             <br />
                                             Nombre_A:
-                                            <asp:Label ID="Nombre_ALabel" runat="server" Text='<%# Eval("Nombre_A") %>' />
+                                            <asp:Label ID="Nombre_ALabel" AssociatedControlID="ImgBtnProducto" runat="server" Text='<%# Eval("Nombre_A") %>' />
                                             <br />PU_A:
                                             <asp:Label ID="PU_ALabel" runat="server" Text='<%# Eval("PU_A") %>' />
                                             <br />

@@ -22,20 +22,27 @@ namespace Ecomerce
 
         protected void BtnAgregar_Click(object sender, EventArgs e)
         {
-            if (this.Request.Cookies["Carrito"] == null)
+            if (Session["Usuario"]!=null)
             {
-                HttpCookie ck = new HttpCookie("Carrito", Request.Cookies["Seleccionado"].Value)
+                if (this.Request.Cookies["Carrito"] == null)
                 {
-                    Expires = DateTime.Now.AddMinutes(10),
-                    Path = "/"
-                };
-                Response.Cookies.Add(ck);
-            }else{
-                HttpCookie ck = Request.Cookies["Carrito"];
-                ck.Value = $"{ck.Value}-{Request.Cookies["Seleccionado"].Value}";
-                Response.Cookies.Add(ck);
+                    HttpCookie ck = new HttpCookie("Carrito", Request.Cookies["Seleccionado"].Value)
+                    {
+                        Expires = DateTime.Now.AddMinutes(10),
+                        Path = "/"
+                    };
+                    Response.Cookies.Add(ck);
+                }else{
+                    HttpCookie ck = Request.Cookies["Carrito"];
+                    ck.Value = $"{ck.Value}-{Request.Cookies["Seleccionado"].Value}";
+                    Response.Cookies.Add(ck);
+                }
+                LblMsj.Text = "Se agrego al carrito.";
             }
-            LblMsj.Text = "Se agrego al carrito.";
+            else
+            {
+                Response.Redirect("Login.aspx");
+            }
         }
         void CargarSeleccionado()
         {

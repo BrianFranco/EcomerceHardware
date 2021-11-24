@@ -37,10 +37,7 @@ namespace Ecomerce
                 LBLUsuarioTienda.Visible = true;
                 HLLogin.Visible = false;
                 HLRegistrarse.Visible = false;
-            }
-
-            section.Controls.Add(new Label() { Text="<div class='card'><img class='img' src='Imagenes/img1.jpg'/><span>Intel Core I7</span><asp:Button ID='Button1' runat='server' Text='Agregar al Carrito'/></div>"});
-            
+            }   
         }
     }
 }
