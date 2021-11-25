@@ -24,19 +24,27 @@ namespace Ecomerce
         {
             if (Session["Usuario"]!=null)
             {
-                if (this.Request.Cookies["Carrito"] == null)
+                Usuario U = Session["Usuario"] as Usuario;
+                int cod_a = int.Parse(Request.Cookies["Seleccionado"].Value);
+                Dictionary<int, int> dic;
+                if (Application[$"Carrito{U.Dni_U}"] == null)
                 {
-                    HttpCookie ck = new HttpCookie("Carrito", Request.Cookies["Seleccionado"].Value)
-                    {
-                        Expires = DateTime.Now.AddMinutes(10),
-                        Path = "/"
-                    };
-                    Response.Cookies.Add(ck);
-                }else{
-                    HttpCookie ck = Request.Cookies["Carrito"];
-                    ck.Value = $"{ck.Value}-{Request.Cookies["Seleccionado"].Value}";
-                    Response.Cookies.Add(ck);
+                    dic = new Dictionary<int, int>();
                 }
+                else
+                {
+                    dic = (Dictionary<int, int>)Application[$"Carrito{U.Dni_U}"];
+                }
+                //Busca si el id ya fue cargado o no
+                if (dic.ContainsKey(cod_a))
+                {
+                    dic[cod_a]++;
+                }
+                else
+                {
+                    dic.Add(cod_a, 1);
+                }
+                Application[$"Carrito{U.Dni_U}"] = dic;
                 LblMsj.Text = "Se agrego al carrito.";
             }
             else

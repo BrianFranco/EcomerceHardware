@@ -53,14 +53,26 @@ namespace Negocio
         {
             return dao.GetArticulosFiltroxNombre(consulta);
         }
-        public DataTable GetArticulosCarrito(string carrito)
+        public DataTable GetArticulosCarrito(Dictionary<int,int> dic)
         {
-            string consulta = "Cod_A=" + carrito.Replace("-", " OR Cod_A=");
+            StringBuilder consulta = new StringBuilder("Cod_A=");
+            int i=1;
+            foreach (int key in dic.Keys)
+            {
+                consulta.Append(key);
+                if (i++<dic.Count)
+                {
+                    consulta.Append(" OR Cod_A=");
+                }
+            }
             DataTable dt = dao.GetArticulos();
-            DataRow[] dr = dt.Select(consulta);
+            dt.Columns.Add("Cantidad",typeof(int));
+            DataRow[] dr = dt.Select(consulta.ToString());
             DataTable dt2 = dt.Clone();
             foreach (DataRow row in dr)
             {
+
+                row["Cantidad"] = dic[int.Parse(row["Cod_A"].ToString())];
                 dt2.ImportRow(row);
             }
             return dt2;

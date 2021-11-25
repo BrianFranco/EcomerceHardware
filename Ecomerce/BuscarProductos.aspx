@@ -66,7 +66,6 @@
                         <tr>
                             <td class="auto-style8">Nombre Producto:
                                 <asp:TextBox ID="TBXBuscarProducto" runat="server"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="RFVBuscarProducto" runat="server" ControlToValidate="TBXBuscarProducto" ErrorMessage="Debe ingresar un ID de producto" ForeColor="Red">*</asp:RequiredFieldValidator>
                             </td>
                                                         <td class="auto-style9">
             <asp:HyperLink ID="HPLVolverBuscarProducto" runat="server" ForeColor="Blue" NavigateUrl="~/Tienda.aspx">Volver</asp:HyperLink>
@@ -87,7 +86,7 @@
                                             <br />PU_A:
                                             <asp:Label ID="PU_ALabel" runat="server" Text='<%# Eval("PU_A") %>' />
                                             <br />
-                                            <asp:Button ID="BtnAgregarCarrito" runat="server" Text="Agregar al Carrito" CommandArgument='<%# Eval("Cod_A") %>' CommandName="eventoButton" OnCommand="BtnAgregarCarrito_Command" />
+                                            <asp:Button ID="BtnAgregarCarrito" Enabled='<%# !Eval("Stock_A").Equals(0)%>' runat="server" Text="Agregar al Carrito" CommandArgument='<%# Eval("Cod_A") %>' CommandName="eventoButton" OnCommand="BtnAgregarCarrito_Command" />
                                             <br />
                                         </td>
                                     </AlternatingItemTemplate>
@@ -141,7 +140,7 @@
                                             <br />PU_A:
                                             <asp:Label ID="PU_ALabel" runat="server" Text='<%# Eval("PU_A") %>' />
                                             <br />
-                                            <asp:Button ID="BtnAgregarCarrito" runat="server" Text="Agregar al Carrito" CommandArgument='<%# Eval("Cod_A") %>' CommandName="eventoButton" OnCommand="BtnAgregarCarrito_Command" />
+                                            <asp:Button ID="BtnAgregarCarrito" Enabled='<%# !Eval("Stock_A").Equals(0)%>' runat="server" Text="Agregar al Carrito" CommandArgument='<%# Eval("Cod_A") %>' CommandName="eventoButton" OnCommand="BtnAgregarCarrito_Command" />
                                             <br /></td>
                                     </ItemTemplate>
                                     <LayoutTemplate>

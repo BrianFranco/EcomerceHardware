@@ -66,22 +66,29 @@ namespace Ecomerce
         {
             if (Session["Usuario"]!=null)
             {
-                if(e.CommandName == "eventoButton")
+                Usuario U = Session["Usuario"] as Usuario;
+                if (e.CommandName == "eventoButton")
                 {
-                    HttpCookie ck;
-                    if (this.Request.Cookies["Carrito"] == null)
+                    int cod_a = int.Parse(e.CommandArgument.ToString());
+                    Dictionary<int, int> dic;
+                    if (Application[$"Carrito{U.Dni_U}"]==null)
                     {
-                        ck = new HttpCookie("Carrito", e.CommandArgument.ToString())
-                        {
-                            Path = "/"
-                        };
-                    } else {
-                        ck = Request.Cookies["Carrito"];
-                        ck.Value = $"{ck.Value}-{e.CommandArgument}";
+                        dic = new Dictionary<int, int>();
                     }
-                    
-                    ck.Expires = DateTime.Now.AddMinutes(10);
-                    Response.Cookies.Add(ck);
+                    else
+                    {
+                        dic = (Dictionary<int,int>)Application[$"Carrito{U.Dni_U}"];
+                    }
+                    //Busca si el id ya fue cargado o no
+                    if (dic.ContainsKey(cod_a))
+                    {
+                        dic[cod_a]++;
+                    }
+                    else
+                    {
+                        dic.Add(cod_a, 1);
+                    }
+                    Application[$"Carrito{U.Dni_U}"] = dic;
                     LBLBuscarProducto.Text = "Se agrego al carrito.";
                 }
             }
@@ -109,7 +116,6 @@ namespace Ecomerce
                     ck = Request.Cookies["Seleccionado"];
                     ck.Value = e.CommandArgument.ToString();
                 }
-
                 ck.Expires = DateTime.Now.AddMinutes(5);
                 Response.Cookies.Add(ck);
                 Response.Redirect("MostrarProducto.aspx");

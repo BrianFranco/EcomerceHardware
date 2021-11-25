@@ -46,14 +46,16 @@
         <asp:ListView ID="lvCarrito" runat="server" GroupItemCount="3">
             <ItemTemplate>
                 <td runat="server" style="background-color:#DCDCDC;color: #000000;">
-                                            <asp:ImageButton ID="ImgBtnProducto" runat="server" Height="100px" ImageUrl='<%# Eval("Img_Url_A") %>' Width="100px" />
+                                            <asp:ImageButton ID="ImgBtnProducto" runat="server" Height="100px" ImageUrl='<%# Eval("Img_Url_A") %>' Width="100px" CommandArgument='<%# Eval("Cod_A")%>' CommandName="eventoImagen" OnCommand="ImgBtnProducto_Command" />
                                             <br />
                                             Nombre_A:
                                             <asp:Label ID="Nombre_ALabel" runat="server" Text='<%# Eval("Nombre_A") %>' />
                                             <br />PU_A:
                                             <asp:Label ID="PU_ALabel" runat="server" Text='<%# Eval("PU_A") %>' />
+                                            <br />Cantidad: 
+                                            <asp:Label ID="LblCantidad" runat="server" Text='<%# Eval("Cantidad") %>'></asp:Label>
                                             <br />
-                                            <asp:Button ID="BtnAgregarCarrito" runat="server" Text="Agregar al Carrito" CommandArgument='<%# Eval("Cod_A") %>' CommandName="eventoButton" />
+                                            <asp:Button ID="BtnAgregarCarrito" runat="server" Text="Agregar al Carrito" CommandArgument='<%# Eval("Cod_A") %>' CommandName="eventoButton" OnCommand="BtnAgregarCarrito_Command" />
                                             <br /></td>
             </ItemTemplate>
             <GroupTemplate>

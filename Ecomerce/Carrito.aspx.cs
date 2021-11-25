@@ -27,7 +27,7 @@ namespace Ecomerce
             }
             if (!IsPostBack)
             {
-                if (this.Request.Cookies["Carrito"] != null)
+                if (Application[$"Carrito{U.Dni_U}"] != null)
                 {
                     CargarCarrito();
                 }
@@ -39,9 +39,66 @@ namespace Ecomerce
         }
         void CargarCarrito()
         {
-            
-            lvCarrito.DataSource = NegArticulo.GetArticulosCarrito(Request.Cookies["Carrito"].Value);
+            Usuario U = Session["Usuario"] as Usuario;
+            Dictionary<int, int> dic = (Dictionary<int, int>)Application[$"Carrito{U.Dni_U}"];
+            lvCarrito.DataSource = NegArticulo.GetArticulosCarrito(dic);
             lvCarrito.DataBind();
+        }
+
+        protected void BtnAgregarCarrito_Command(object sender, CommandEventArgs e)
+        {
+            if (Session["Usuario"] != null)
+            {
+                if (e.CommandName == "eventoButton")
+                {
+                    Usuario U = Session["Usuario"] as Usuario;
+                    int cod_a = int.Parse(e.CommandArgument.ToString());
+                    Dictionary<int, int> dic;
+                    if (Application[$"Carrito{U.Dni_U}"] == null)
+                    {
+                        dic = new Dictionary<int, int>();
+                    }
+                    else
+                    {
+                        dic = (Dictionary<int, int>)Application[$"Carrito{U.Dni_U}"];
+                    }
+                    //Busca si el id ya fue cargado o no
+                    if (dic.ContainsKey(cod_a))
+                    {
+                        dic[cod_a]++;
+                    }
+                    else
+                    {
+                        dic.Add(cod_a, 1);
+                    }
+                    Application[$"Carrito{U.Dni_U}"] = dic;
+                    CargarCarrito();
+                }
+            }
+        }
+
+        protected void ImgBtnProducto_Command(object sender, CommandEventArgs e)
+        {
+            if (e.CommandName == "eventoImagen")
+            {
+                HttpCookie ck;
+                if (this.Request.Cookies["Seleccionado"] == null)
+                {
+                    ck = new HttpCookie("Seleccionado")
+                    {
+                        Value = e.CommandArgument.ToString(),
+                        Path = "/"
+                    };
+                }
+                else
+                {
+                    ck = Request.Cookies["Seleccionado"];
+                    ck.Value = e.CommandArgument.ToString();
+                }
+                ck.Expires = DateTime.Now.AddMinutes(5);
+                Response.Cookies.Add(ck);
+                Response.Redirect("MostrarProducto.aspx");
+            }
         }
     }
     
