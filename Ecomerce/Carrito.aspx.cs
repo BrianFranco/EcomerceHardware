@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
 using Negocio;
 using Entidades;
 
@@ -27,22 +28,32 @@ namespace Ecomerce
             }
             if (!IsPostBack)
             {
-                if (Application[$"Carrito{U.Dni_U}"] != null)
+                if (U != null)
                 {
-                    CargarCarrito();
+                    if (Application[$"Carrito{U.Dni_U}"] != null)
+                    {
+                        CargarCarrito();
+                    }
+                    else
+                    {
+                        LblMsj.Text = "Carrito vacio.";
+                    }
                 }
                 else
                 {
-                    LblMsj.Text = "Carrito vacio.";
-                }
+                    Response.Redirect("Login.aspx");
+                } 
             }
         }
         void CargarCarrito()
         {
             Usuario U = Session["Usuario"] as Usuario;
             Dictionary<int, int> dic = (Dictionary<int, int>)Application[$"Carrito{U.Dni_U}"];
-            lvCarrito.DataSource = NegArticulo.GetArticulosCarrito(dic);
+            DataTable dt = NegArticulo.GetArticulosCarrito(dic);
+            lvCarrito.DataSource = dt;
             lvCarrito.DataBind();
+            DlCarrito.DataSource = dt;
+            DlCarrito.DataBind();
         }
 
         protected void BtnAgregarCarrito_Command(object sender, CommandEventArgs e)

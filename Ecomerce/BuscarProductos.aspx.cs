@@ -6,12 +6,14 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Negocio;
 using Entidades;
+using System.Data;
 
 namespace Ecomerce
 {
     public partial class BuscarProductos : System.Web.UI.Page
     {
         NegocioArticulo NegArticulo = new NegocioArticulo();
+        NegocioCategoria NegCategoria = new NegocioCategoria();
         protected void Page_Load(object sender, EventArgs e)
         {
             string JQueryVer = "1.7.1";
@@ -40,6 +42,7 @@ namespace Ecomerce
             if (!IsPostBack)
             {
                 CargarGridView();
+                CargarDDL();
             }
         }
         void CargarGridView()
@@ -47,12 +50,24 @@ namespace Ecomerce
             LvProductos.DataSource = NegArticulo.GetArticulos();
             LvProductos.DataBind();
         }
+        void CargarDDL()
+        {
+            DataTable dt = NegCategoria.GetCategorias();
+            DataRow dr = dt.NewRow();
+            dr["NombreCat"]="Todas";
+            dr["Cod_Cat"] = "0";
+            dt.Rows.InsertAt(dr, 0);
+            DdlCategoria.DataSource = dt;
+            DdlCategoria.DataTextField = "NombreCat";
+            DdlCategoria.DataValueField = "Cod_Cat";
+            DdlCategoria.DataBind();
+        }
 
         protected void BTNBuscarProducto_Click(object sender, EventArgs e)
         {
-            if (TBXBuscarProducto.Text != string.Empty)
+            if (TBXBuscarProducto.Text != string.Empty || DdlCategoria.SelectedValue != "0" || DdlPrecios.SelectedValue != "0")
             {
-                LvProductos.DataSource = NegArticulo.GetArticulosFiltroxNombre(TBXBuscarProducto.Text);
+                LvProductos.DataSource = NegArticulo.GetBuscarProductoFiltros(TBXBuscarProducto.Text, DdlCategoria.SelectedValue, DdlPrecios.SelectedValue);
                 LvProductos.DataBind();
                 TBXBuscarProducto.Text = string.Empty;
             }
@@ -60,7 +75,6 @@ namespace Ecomerce
             {
                 CargarGridView();
             }
-
         }
         protected void BtnAgregarCarrito_Command(object sender, CommandEventArgs e)
         {

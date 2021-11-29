@@ -32,5 +32,10 @@ namespace Dao
         {
             return Cn.EjecutarTransaccion("DELETE from Categorias WHERE Cod_Cat = " + reg.Id);
         }
+        public DataTable GetCategorias()
+        {
+            string consulta = "select * from Categorias";
+            return Cn.ObtenerTablaxConsulta(consulta);
+        }
     }
 }

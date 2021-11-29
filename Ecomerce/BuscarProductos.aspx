@@ -66,6 +66,15 @@
                         <tr>
                             <td class="auto-style8">Nombre Producto:
                                 <asp:TextBox ID="TBXBuscarProducto" runat="server"></asp:TextBox>
+                                <strong>Categorias:</strong>
+                                <asp:DropDownList ID="DdlCategoria" runat="server">
+                                </asp:DropDownList>
+                                <strong>Ordenar por Precios:</strong>
+                                <asp:DropDownList ID="DdlPrecios" runat="server">
+                                    <asp:ListItem Value="0">Sin Ordenar</asp:ListItem>
+                                    <asp:ListItem Value="ASC">Mayor precio</asp:ListItem>
+                                    <asp:ListItem Value="DESC">Menor precio</asp:ListItem>
+                                </asp:DropDownList>
                             </td>
                                                         <td class="auto-style9">
             <asp:HyperLink ID="HPLVolverBuscarProducto" runat="server" ForeColor="Blue" NavigateUrl="~/Tienda.aspx">Volver</asp:HyperLink>

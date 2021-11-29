@@ -71,11 +71,18 @@ namespace Negocio
             DataTable dt2 = dt.Clone();
             foreach (DataRow row in dr)
             {
-
                 row["Cantidad"] = dic[int.Parse(row["Cod_A"].ToString())];
                 dt2.ImportRow(row);
             }
             return dt2;
+        }
+        public DataTable GetArticulosFiltradosxNombreCategoria(string nombre,string categoria)
+        {
+            return dao.GetArticulosFiltroxNombreCategoria(nombre, categoria);
+        }
+        public DataTable GetBuscarProductoFiltros(string nombre,string categoria,string precio)
+        {
+            return dao.GetBuscarProductoFiltros(nombre,categoria,precio);
         }
     }
 }

@@ -44,5 +44,9 @@ namespace Negocio
             }
             return 0;
         }
+        public DataTable GetCategorias()
+        {
+            return dao.GetCategorias();
+        }
     }
 }

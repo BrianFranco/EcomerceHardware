@@ -80,6 +80,30 @@
                                     </LayoutTemplate>
         </asp:ListView>
         <asp:Label ID="LblMsj" runat="server"></asp:Label>
+        <p>
+            <asp:Label ID="Label3" runat="server" Text="RESUMEN DE COMPRA"></asp:Label>
+        </p>
+        <p>
+            <asp:DataList ID="DlCarrito" runat="server">
+                <ItemTemplate>
+                <td runat="server" style="background-color:#DCDCDC;color: #000000;">
+                                            <asp:ImageButton ID="ImgBtnProducto" runat="server" Height="100px" ImageUrl='<%# Eval("Img_Url_A") %>' Width="100px" CommandArgument='<%# Eval("Cod_A")%>' CommandName="eventoImagen" OnCommand="ImgBtnProducto_Command" />
+                                            <br />
+                                            Nombre_A:
+                                            <asp:Label ID="Nombre_ALabel" runat="server" Text='<%# Eval("Nombre_A") %>' />
+                                            <br />PU_A:
+                                            <asp:Label ID="PU_ALabel" runat="server" Text='<%# Eval("PU_A") %>' />
+                                            <br />Cantidad: 
+                                            <asp:Label ID="LblCantidad" runat="server" Text='<%# Eval("Cantidad") %>'></asp:Label>
+                                            <br />
+                                            <asp:Button ID="BtnAgregarCarrito" runat="server" Text="Agregar al Carrito" CommandArgument='<%# Eval("Cod_A") %>' CommandName="eventoButton" OnCommand="BtnAgregarCarrito_Command" />
+                                            <br /></td>
+            </ItemTemplate>
+            </asp:DataList>
+        </p>
+        <p>
+            <asp:Button ID="BtnComprar" runat="server" Text="Comprar" />
+        </p>
     </form>
 </body>
 </html>

@@ -107,12 +107,15 @@ VALUES (
 N'Memoria Ram'
 )
 
+GO
+
 INSERT [dbo].[Articulos] (
 [Nombre_A],[Descripcion_A],[Cat_A],[PU_A],[Stock_A]
 ) 
 VALUES (
 N'AMD Ryzen Threadripper PRO 3000WX',N'Nucleos:64 Threads:128 clock:2.7GHz a 4.2GHz',1,556.5,10
 )
+
 
 INSERT [dbo].[Articulos] (
 [Nombre_A],[Descripcion_A],[Cat_A],[PU_A],[Stock_A]
@@ -212,6 +215,8 @@ VALUES (
 N'RAM 8GB Crucial CT8G4DFS8266',N'DDR4, 2666MHz, tasa de transferencia de 21300 MBs',15,500,22
 
 )
+
+GO
 
 INSERT [dbo].[Usuarios] (
 [Dni_U],[Nombre_U],[Apellido_U],[Direccion_U],[Ciudad_U],[Provincia_U],[Email_U],[Contraseña_U],[Administrador_U]
