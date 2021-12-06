@@ -1,0 +1,50 @@
+CREATE PROCEDURE spCargarCompra
+(
+@FECHA_V VARCHAR(10),
+@DNI_USU_V INT,
+@DIRECCION_V VARCHAR(30),
+@HORARIO_V VARCHAR(30),
+@TOTAL_V float
+)
+AS
+INSERT INTO Ventas
+(
+Fecha_V,
+Dni_Usu_V,
+Direccion_V,
+Horario_V,
+Total_V
+)
+VALUES
+(
+@FECHA_V,
+@DNI_USU_V,
+@DIRECCION_V,
+@HORARIO_V,
+@TOTAL_V
+)RETURN
+
+GO
+
+CREATE PROCEDURE spCargarDetalleVenta
+(
+@NUM_V_DV INT,
+@COD_A_DV INT,
+@CANT_DV INT,
+@PU_DV FLOAT
+)
+AS
+INSERT INTO [Detalle de Ventas]
+(
+Num_V_DV,
+Cod_A_DV,
+Cant_DV,
+PU_DV
+)
+VALUES
+(
+@NUM_V_DV,
+@COD_A_DV,
+@CANT_DV,
+@PU_DV
+)RETURN

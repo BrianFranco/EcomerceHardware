@@ -10,14 +10,17 @@
             width: 100%;
             margin-bottom: 63px;
         }
+
         .auto-style2 {
             height: 20px;
             text-align: right;
         }
+
         .auto-style3 {
             height: 20px;
             width: 249px;
         }
+
         .auto-style4 {
             text-align: right;
         }
@@ -35,7 +38,7 @@
                 </tr>
                 <tr>
                     <td class="auto-style3">
-                        <asp:Label ID="Label1" runat="server" Font-Bold="True" Font-Size="X-Large" Text="Carrito"></asp:Label>
+                        <asp:Label ID="Label1" runat="server" Font-Bold="True" Font-Size="X-Large" Text="Carrito de Compras"></asp:Label>
                     </td>
                     <td class="auto-style4">
                         <asp:HyperLink ID="HLBuscar" NavigateUrl="~/BuscarProductos.aspx" runat="server">Volver</asp:HyperLink>
@@ -43,66 +46,29 @@
                 </tr>
             </table>
         </div>
-        <asp:ListView ID="lvCarrito" runat="server" GroupItemCount="3">
-            <ItemTemplate>
-                <td runat="server" style="background-color:#DCDCDC;color: #000000;">
-                                            <asp:ImageButton ID="ImgBtnProducto" runat="server" Height="100px" ImageUrl='<%# Eval("Img_Url_A") %>' Width="100px" CommandArgument='<%# Eval("Cod_A")%>' CommandName="eventoImagen" OnCommand="ImgBtnProducto_Command" />
-                                            <br />
-                                            Nombre_A:
-                                            <asp:Label ID="Nombre_ALabel" runat="server" Text='<%# Eval("Nombre_A") %>' />
-                                            <br />PU_A:
-                                            <asp:Label ID="PU_ALabel" runat="server" Text='<%# Eval("PU_A") %>' />
-                                            <br />Cantidad: 
-                                            <asp:Label ID="LblCantidad" runat="server" Text='<%# Eval("Cantidad") %>'></asp:Label>
-                                            <br />
-                                            <asp:Button ID="BtnAgregarCarrito" runat="server" Text="Agregar al Carrito" CommandArgument='<%# Eval("Cod_A") %>' CommandName="eventoButton" OnCommand="BtnAgregarCarrito_Command" />
-                                            <br /></td>
-            </ItemTemplate>
-            <GroupTemplate>
-                                        <tr id="itemPlaceholderContainer" runat="server">
-                                            <td id="itemPlaceholder" runat="server"></td>
-                                        </tr>
-                                    </GroupTemplate>
-            <LayoutTemplate>
-                                        <table runat="server">
-                                            <tr runat="server">
-                                                <td runat="server">
-                                                    <table id="groupPlaceholderContainer" runat="server" border="1" style="background-color: #FFFFFF;border-collapse: collapse;border-color: #999999;border-style:none;border-width:1px;font-family: Verdana, Arial, Helvetica, sans-serif;">
-                                                        <tr id="groupPlaceholder" runat="server">
-                                                        </tr>
-                                                    </table>
-                                                </td>
-                                            </tr>
-                                            <tr runat="server">
-                                                <td runat="server" style="text-align: center;background-color: #CCCCCC;font-family: Verdana, Arial, Helvetica, sans-serif;color: #000000;"></td>
-                                            </tr>
-                                        </table>
-                                    </LayoutTemplate>
-        </asp:ListView>
         <asp:Label ID="LblMsj" runat="server"></asp:Label>
-        <p>
-            <asp:Label ID="Label3" runat="server" Text="RESUMEN DE COMPRA"></asp:Label>
-        </p>
         <p>
             <asp:DataList ID="DlCarrito" runat="server">
                 <ItemTemplate>
-                <td runat="server" style="background-color:#DCDCDC;color: #000000;">
-                                            <asp:ImageButton ID="ImgBtnProducto" runat="server" Height="100px" ImageUrl='<%# Eval("Img_Url_A") %>' Width="100px" CommandArgument='<%# Eval("Cod_A")%>' CommandName="eventoImagen" OnCommand="ImgBtnProducto_Command" />
-                                            <br />
-                                            Nombre_A:
-                                            <asp:Label ID="Nombre_ALabel" runat="server" Text='<%# Eval("Nombre_A") %>' />
-                                            <br />PU_A:
-                                            <asp:Label ID="PU_ALabel" runat="server" Text='<%# Eval("PU_A") %>' />
-                                            <br />Cantidad: 
-                                            <asp:Label ID="LblCantidad" runat="server" Text='<%# Eval("Cantidad") %>'></asp:Label>
-                                            <br />
-                                            <asp:Button ID="BtnAgregarCarrito" runat="server" Text="Agregar al Carrito" CommandArgument='<%# Eval("Cod_A") %>' CommandName="eventoButton" OnCommand="BtnAgregarCarrito_Command" />
-                                            <br /></td>
-            </ItemTemplate>
+                    <td runat="server" style="background-color: #DCDCDC; color: #000000;">
+                        <asp:ImageButton ID="ImgBtnProducto" runat="server" Height="100px" ImageUrl='<%# Eval("Img_Url_A") %>' Width="100px" CommandArgument='<%# Eval("Cod_A")%>' CommandName="eventoImagen" OnCommand="ImgBtnProducto_Command" />
+                        <asp:Label ID="Nombre_ALabel" runat="server" Text='<%# Eval("Nombre_A") %>' />
+                        <asp:Label ID="PU_ALabel" runat="server" Visible="false" Text='<%# Eval("PU_A") %>'></asp:Label>
+                        <asp:Button ID="BtnSumarCarrito" runat="server" Text="+" CommandArgument='<%# Eval("Cod_A") +"-"+Eval("Stock_A")%>' CommandName="eventoButtonSumar" OnCommand="BtnSumarCarrito_Command" />
+                        <asp:Label ID="LblCantidad" runat="server" Text='<%# Eval("Cantidad") %>'></asp:Label>
+                        <asp:Button ID="BtnRestarCarrito" runat="server" Text="-" CommandArgument='<%# Eval("Cod_A") %>' CommandName="eventoButtonRestar" OnCommand="BtnRestarCarrito_Command" />
+                        $<asp:Label ID="LblPU_AxCantidad" runat="server" Text='<%#(float.Parse(Eval("PU_A").ToString())*int.Parse(Eval("Cantidad").ToString())) %>' />
+                        <asp:Button ID="BtnQuitarCarrito" runat="server" Text="Quitar del Carrito" CommandArgument='<%# Eval("Cod_A") %>' CommandName="eventoButtonQuitar" OnCommand="BtnQuitarCarrito_Command" />
+                    </td>
+                </ItemTemplate>
             </asp:DataList>
         </p>
+        <div >
+            <asp:Label ID="LblTextoTotal" runat="server" Text="TOTAL: $ "></asp:Label>
+            <asp:Label ID="LblTotal" runat="server"></asp:Label>
+        </div>
         <p>
-            <asp:Button ID="BtnComprar" runat="server" Text="Comprar" />
+            <asp:Button ID="BtnComprar" runat="server" Text="Comprar" OnClick="BtnComprar_Click"/>
         </p>
     </form>
 </body>

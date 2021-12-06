@@ -44,7 +44,9 @@
   <ItemGroup>
     <Compile Include="DaoArticulo.cs" />
     <Compile Include="DaoCategoria.cs" />
+    <Compile Include="DaoDetalleVenta.cs" />
     <Compile Include="DaoUsuario.cs" />
+    <Compile Include="DaoVenta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlConexion.cs" />
   </ItemGroup>
