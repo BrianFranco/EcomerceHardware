@@ -63,14 +63,16 @@
             <br />
             <asp:Label ID="LBLPrecioProducto" runat="server" Text="Precio unitario"></asp:Label>
 &nbsp;&nbsp;&nbsp; &nbsp;
-            <asp:TextBox ID="TBXPrecioProducto" runat="server"></asp:TextBox>
+            <asp:TextBox ID="TBXPrecioProducto" runat="server" ValidationGroup="G2"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RFVPrecioProducto" runat="server" ControlToValidate="TBXPrecioProducto" ErrorMessage="Debe ingresar el precio unitario del producto" ForeColor="Red" ValidationGroup="G2">*</asp:RequiredFieldValidator>
+            <asp:RegularExpressionValidator ID="RegexPU" runat="server" ControlToValidate="TBXPrecioProducto" ErrorMessage="Solo puede ingresar numeros" ForeColor="Red" ValidationExpression="^(?!(?:0|0\.0|0\.00)$)[+]?\d+(\.\d[0-9])?$" ValidationGroup="G2">*</asp:RegularExpressionValidator>
             <br />
             <br />
             <asp:Label ID="LBLStockProducto" runat="server" Text="Stock"></asp:Label>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:TextBox ID="TBXStockProducto" runat="server"></asp:TextBox>
+            <asp:TextBox ID="TBXStockProducto" runat="server" ValidationGroup="G2"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RFVStockProducto" runat="server" ControlToValidate="TBXStockProducto" ErrorMessage="Debe ingresar una cantidad de productos" ForeColor="Red" ValidationGroup="G2">*</asp:RequiredFieldValidator>
+            <asp:RegularExpressionValidator ID="RegexStock" runat="server" ControlToValidate="TBXStockProducto" ErrorMessage="Solo puede ingresar numeros" ForeColor="Red" ValidationExpression="^(0|[1-9][0-9]{0,9})$" ValidationGroup="G2">*</asp:RegularExpressionValidator>
             <br />
             <br />
             <asp:Label ID="LBLUrlAgregarProducto" runat="server" Text="URL imagen"></asp:Label>

@@ -15,22 +15,28 @@
             width: 100%;
         }
         .auto-style3 {
-            width: 432px;
+            width: 399px;
         }
         .auto-style4 {
             text-align: right;
         }
         .auto-style5 {
-            width: 432px;
+            width: 399px;
             height: 23px;
-            text-align: right;
+            text-align: left;
         }
         .auto-style6 {
-            text-align: right;
+            text-align: left;
             height: 23px;
         }
         .auto-style7 {
             text-align: left;
+            height: 30px;
+        }
+        .auto-style8 {
+            width: 399px;
+            height: 30px;
+            margin-left: 40px;
         }
     </style>
 </head>
@@ -51,18 +57,19 @@
                         &nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="auto-style3">
-                        Ingrese el ID del producto que desea modificar:<asp:TextBox ID="txtID" runat="server" TextMode="Number"></asp:TextBox>
+                    <td class="auto-style8">
+                        Ingrese el ID del producto que desea modificar: <asp:TextBox ID="txtID" runat="server" Width="50px"></asp:TextBox>
+                        <asp:RegularExpressionValidator ID="RegexID" runat="server" ControlToValidate="txtID" ErrorMessage="Debe ingresar un numero entero positivo" ForeColor="Red" ValidationExpression="^[1-9]\d*$" ValidationGroup="G1">*</asp:RegularExpressionValidator>
                     </td>
                     <td class="auto-style7">
-            <asp:Label ID="LblMensaje" runat="server"></asp:Label>
-                    </td>
+                        &nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="auto-style5">
-            <asp:Button ID="BTNBuscarModifProducto" runat="server" Text="Buscar" ValidationGroup="G2" OnClick="BTNBuscarModifProducto_Click" />
-                    </td>
-                    <td class="auto-style6">
+                    <td class="auto-style5" dir="ltr">
+                        <asp:ValidationSummary ID="ValidationSummary1" runat="server" Height="22px" ValidationGroup="G1" Width="316px" />
+&nbsp;</td>
+                    <td class="auto-style6" aria-required="False">
+            <asp:Button ID="BTNBuscarModifProducto" runat="server" Text="Buscar" ValidationGroup="G1" OnClick="BTNBuscarModifProducto_Click" />
                         </td>
                 </tr>
             </table>
@@ -96,7 +103,7 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Precio por Unidad">
                         <EditItemTemplate>
-                            <asp:TextBox ID="txb_ed_PUA" runat="server" Text='<%# Bind("PU_A") %>' TextMode="Number"></asp:TextBox>
+                            <asp:TextBox ID="txb_ed_PUA" runat="server" Text='<%# Bind("PU_A") %>' ValidationGroup="G1"></asp:TextBox>
                         </EditItemTemplate>
                         <ItemTemplate>
                             <asp:Label ID="lbl_it_PU" runat="server" Text='<%# Bind("PU_A") %>'></asp:Label>

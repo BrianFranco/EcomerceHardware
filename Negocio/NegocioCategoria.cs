@@ -48,5 +48,15 @@ namespace Negocio
         {
             return dao.GetCategorias();
         }
+        public Categoria GetCategoriaFiltroxID(string id)
+        {
+            DataTable dt = dao.GetCategoriaFiltroxID(id);
+
+            Categoria cat = new Categoria();
+            cat.Cod_Cat = (int)dt.Rows[0]["Cod_Cat"];
+            cat.Nombre_Cat = dt.Rows[0]["Nombre_Cat"].ToString();
+
+            return cat;
+        }
     }
 }

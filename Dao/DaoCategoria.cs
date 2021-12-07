@@ -14,7 +14,7 @@ namespace Dao
 
         public int InsertarCategoria(Categoria cat)
         {
-            string consulta = $"INSERT INTO Categorias(NombreCat) Values ('{cat.Nombre_cat}')";
+            string consulta = $"INSERT INTO Categorias(NombreCat) Values ('{cat.Nombre_Cat}')";
             return Cn.EjecutarTransaccion(consulta);
         }
 
@@ -30,11 +30,16 @@ namespace Dao
 
         public int EliminarCategoria(Categoria reg)
         {
-            return Cn.EjecutarTransaccion("DELETE from Categorias WHERE Cod_Cat = " + reg.Id);
+            return Cn.EjecutarTransaccion("DELETE from Categorias WHERE Cod_Cat = " + reg.Nombre_Cat);
         }
         public DataTable GetCategorias()
         {
             string consulta = "select * from Categorias";
+            return Cn.ObtenerTablaxConsulta(consulta);
+        }
+        public DataTable GetCategoriaFiltroxID(string filtro)
+        {
+            string consulta = $"select * from Categorias where Cod_Cat = {filtro}";
             return Cn.ObtenerTablaxConsulta(consulta);
         }
     }

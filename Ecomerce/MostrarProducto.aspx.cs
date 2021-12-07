@@ -22,7 +22,7 @@ namespace Ecomerce
 
         protected void BtnAgregar_Click(object sender, EventArgs e)
         {
-            if (Session["Usuario"]!=null)
+            if (Session["Usuario"] != null)
             {
                 Usuario U = Session["Usuario"] as Usuario;
                 int cod_a = int.Parse(Request.Cookies["Seleccionado"].Value);
@@ -54,13 +54,13 @@ namespace Ecomerce
         }
         void CargarSeleccionado()
         {
-            HttpCookie ck = Request.Cookies["Seleccionado"];
-            Articulo art = negArticulo.GetArticulosFiltroxID(ck.Value);
-            LblDescripcion.Text = art.Descripcion_A;
+            Articulo art = negArticulo.GetArticulosFiltroxID((string)Session["Seleccionado"]);
+            LblNombreCat.Text = art.Categoria_A.Nombre_Cat;
             LblNombre.Text = art.Nombre_A;
+            LblDescripcion.Text = art.Descripcion_A;
             LblPrecio.Text = art.Pu_A.ToString();
             ImgProducto.ImageUrl = art.ImgUrl_A;
-            if(art.Stock == 0)
+            if (art.Stock == 0)
             {
                 BtnAgregar.Enabled = false;
                 LblMsj.Text = "Articulo temporalmente sin stock.";

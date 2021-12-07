@@ -24,33 +24,35 @@ namespace Ecomerce
                 CdnSupportsSecureConnection = true,
                 LoadSuccessExpression = "window.jQuery"
             });
-            
-            if(!IsPostBack)
+
+            if (!IsPostBack)
             {
-                DDLCategoriaProducto.DataSource = neg.getTablaArticulos("SELECT [NombreCat], [Cod_Cat] FROM[Categorias]");
-                DDLCategoriaProducto.DataTextField = "NombreCat";
+                Usuario U = new Usuario();
+                U = (Usuario)Session["Usuario"];
+
+                if (U == null)
+                {
+                    LBLUsuarioAgregarProducto.Text = "";
+                }
+                else if (U != null)
+                {
+                    LBLUsuarioAgregarProducto.Text = "Bienvenido, " + U.Nombre_U.ToString();
+                }
+
+                DDLCategoriaProducto.DataSource = neg.getTablaArticulos("SELECT [Nombre_Cat], [Cod_Cat] FROM[Categorias]");
+                DDLCategoriaProducto.DataTextField = "Nombre_Cat";
                 DDLCategoriaProducto.DataValueField = "Cod_Cat";
                 DDLCategoriaProducto.DataBind();
             }
 
-            Usuario U = new Usuario();
-            U = (Usuario)Session["Usuario"];
 
-            if (U == null)
-            {
-                LBLUsuarioAgregarProducto.Text = "";
-            }
-            else if (U != null)
-            {
-                LBLUsuarioAgregarProducto.Text = "Bienvenido, " + U.Nombre_U.ToString();
-            }
         }
 
         protected void BTNAgregarProducto_Click(object sender, EventArgs e)
         {
-            if(RFVIdProducto.IsValid && RFVDescripcionProducto.IsValid && RFVPrecioProducto.IsValid && RFVStockProducto.IsValid && FUPUrlImagen.HasFile)
+            if (RFVIdProducto.IsValid && RFVDescripcionProducto.IsValid && RFVPrecioProducto.IsValid && RegexPU.IsValid && RFVStockProducto.IsValid && RegexStock.IsValid && FUPUrlImagen.HasFile)
             {
-                if (neg.AgregarArticulo("INSERT INTO Articulos (Nombre_A, Descripcion_A, Cat_A, PU_A, Stock_A, Img_Url_A)" +
+                if (neg.AgregarArticulo("INSERT INTO Articulos (Nombre_A, Descripcion_A, Cod_Cat_A, PU_A, Stock_A, Img_Url_A)" +
                     "Values ('" + TBXNombreProducto.Text + "','" + TBXDescripcionProducto.Text + "'," + DDLCategoriaProducto.SelectedValue + "," + TBXPrecioProducto.Text + "," + TBXStockProducto.Text + ",'~/Imagenes/" + FUPUrlImagen.FileName + "')") > 0)
                     LBLConfirmacionAgregarProducto.Text = "El producto se agrego correctamente";
                 else
@@ -60,7 +62,7 @@ namespace Ecomerce
             else
                 LBLConfirmacionAgregarProducto.Text = "";
         }
-        
+
         void VaciarTBX()
         {
             TBXNombreProducto.Text = "";

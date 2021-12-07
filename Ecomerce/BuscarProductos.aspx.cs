@@ -54,11 +54,11 @@ namespace Ecomerce
         {
             DataTable dt = NegCategoria.GetCategorias();
             DataRow dr = dt.NewRow();
-            dr["NombreCat"]="Todas";
+            dr["Nombre_Cat"]="Todas";
             dr["Cod_Cat"] = "0";
             dt.Rows.InsertAt(dr, 0);
             DdlCategoria.DataSource = dt;
-            DdlCategoria.DataTextField = "NombreCat";
+            DdlCategoria.DataTextField = "Nombre_Cat";
             DdlCategoria.DataValueField = "Cod_Cat";
             DdlCategoria.DataBind();
         }

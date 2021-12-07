@@ -10,11 +10,14 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <asp:HyperLink ID="HyperLink1" NavigateUrl="~/BuscarProductos.aspx" runat="server">Volver</asp:HyperLink>
+            <asp:HyperLink ID="HyperLink1" NavigateUrl="~/Tienda.aspx" runat="server">Volver</asp:HyperLink>
             <br />
             <asp:Image ID="ImgProducto" runat="server" />
             <br />
+            <asp:Label ID="LblNombreCat" runat="server"></asp:Label>
+            <br />
             <asp:Label ID="LblNombre" runat="server"></asp:Label>
+            <br />
             <br />
             <asp:Label ID="LblDescripcion" runat="server"></asp:Label>
             <br />

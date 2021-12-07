@@ -8,7 +8,7 @@ namespace Entidades
 {
     public class Categoria
     {
-        private int id;
+        private int cod_cat;
         private string nombre_cat;
 
         public Categoria()
@@ -16,7 +16,7 @@ namespace Entidades
         }
 
         ///sets y gets
-        public int Id { get => id; set => id = value; }
-        public string Nombre_cat { get => nombre_cat; set => nombre_cat = value; }
+        public int Cod_Cat { get => cod_cat; set => cod_cat = value; }
+        public string Nombre_Cat { get => nombre_cat; set => nombre_cat = value; }
     }
 }

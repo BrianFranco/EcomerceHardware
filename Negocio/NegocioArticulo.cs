@@ -35,18 +35,25 @@ namespace Negocio
         {
             return dao.GetArticulos();
         }
-        public Articulo GetArticulosFiltroxID(string consulta)
+        
+        public DataTable GetArticulosXCat(string cat)
         {
-            DataTable dt = dao.GetArticulosFiltroxID(consulta);
+            return dao.GetArticulosXCat(cat);
+        }
+        public Articulo GetArticulosFiltroxID(string id)
+        {
+            NegocioCategoria nc = new NegocioCategoria();
+            DataTable dt = dao.GetArticulosFiltroxID(id);
 
             Articulo art = new Articulo();
             art.Cod_A = (int)dt.Rows[0]["Cod_A"];
+            art.Categoria_A = nc.GetCategoriaFiltroxID(dt.Rows[0]["Cod_Cat_A"].ToString());
             art.Nombre_A = dt.Rows[0]["Nombre_A"].ToString();
             art.Descripcion_A = dt.Rows[0]["Descripcion_A"].ToString();
             art.ImgUrl_A = dt.Rows[0]["Img_Url_A"].ToString();
-            art.Pu_A = decimal.Parse(dt.Rows[0]["PU_A"].ToString());
+            art.Pu_A = (dt.Rows[0]["PU_A"].ToString());
             art.Stock = (int)dt.Rows[0]["Stock_A"];
-            
+
             return art;
         }
         public DataTable GetArticulosFiltroxNombre(string consulta)

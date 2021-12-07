@@ -60,7 +60,11 @@ namespace Dao
             string consulta = "select * from Articulos";
             return Cn.ObtenerTablaxConsulta(consulta);
         }
-
+        public DataTable GetArticulosXCat(string cat)
+        {
+            string consulta = "select * from Articulos WHERE Cod_Cat_A = " + cat;
+            return Cn.ObtenerTablaxConsulta(consulta);
+        }
         public DataTable GetBuscarProductoFiltros(string nombre,string categoria,string precio)
         {
             StringBuilder sb = new StringBuilder("SELECT * FROM Articulos WHERE Nombre_A LIKE '%");

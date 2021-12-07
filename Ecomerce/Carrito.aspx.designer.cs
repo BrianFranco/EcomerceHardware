@@ -51,15 +51,6 @@ namespace Ecomerce
         protected global::System.Web.UI.WebControls.HyperLink HLBuscar;
 
         /// <summary>
-        /// Control lvCarrito.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView lvCarrito;
-
-        /// <summary>
         /// Control LblMsj.
         /// </summary>
         /// <remarks>
@@ -69,15 +60,6 @@ namespace Ecomerce
         protected global::System.Web.UI.WebControls.Label LblMsj;
 
         /// <summary>
-        /// Control Label3.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
-
-        /// <summary>
         /// Control DlCarrito.
         /// </summary>
         /// <remarks>
@@ -85,6 +67,24 @@ namespace Ecomerce
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DataList DlCarrito;
+
+        /// <summary>
+        /// Control LblTextoTotal.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LblTextoTotal;
+
+        /// <summary>
+        /// Control LblTotal.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LblTotal;
 
         /// <summary>
         /// Control BtnComprar.

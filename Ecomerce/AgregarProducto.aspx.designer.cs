@@ -132,6 +132,15 @@ namespace Ecomerce
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVPrecioProducto;
 
         /// <summary>
+        /// Control RegexPU.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegexPU;
+
+        /// <summary>
         /// Control LBLStockProducto.
         /// </summary>
         /// <remarks>
@@ -157,6 +166,15 @@ namespace Ecomerce
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVStockProducto;
+
+        /// <summary>
+        /// Control RegexStock.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegexStock;
 
         /// <summary>
         /// Control LBLUrlAgregarProducto.

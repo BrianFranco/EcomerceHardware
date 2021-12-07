@@ -66,5 +66,29 @@ namespace Dao
 
             return dr;
         }
+
+        public int EjecutarProcedimientoAlmacenado(SqlCommand cmd, string procedimientoAlmacenado)
+        {
+            int filas = 0;
+            SqlConnection Cn = new SqlConnection(ruta);
+            try
+            {
+                Cn.Open();
+                cmd.Connection = Cn;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = procedimientoAlmacenado;
+                filas = cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                Cn.Close();
+            }
+
+            return filas;
+        }
     }
 }
