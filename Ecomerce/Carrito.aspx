@@ -55,10 +55,9 @@
                         <asp:Label ID="Nombre_ALabel" runat="server" Text='<%# Eval("Nombre_A") %>' />
                         <asp:Label ID="PU_ALabel" runat="server" Visible="false" Text='<%# Eval("PU_A") %>'></asp:Label>
                         <asp:Button ID="BtnSumarCarrito" runat="server" Text="+" CommandArgument='<%# Eval("Cod_A") +"-"+Eval("Stock_A")%>' CommandName="eventoButtonSumar" OnCommand="BtnSumarCarrito_Command" />
-                        <asp:Label ID="LblCantidad" runat="server" Text='<%# Eval("PU_A") %>'></asp:Label>
+                        <asp:Label ID="LblCantidad" runat="server" Text='<%# Eval("Cantidad") %>'></asp:Label>
                         <asp:Button ID="BtnRestarCarrito" runat="server" Text="-" CommandArgument='<%# Eval("Cod_A") %>' CommandName="eventoButtonRestar" OnCommand="BtnRestarCarrito_Command" />
-                        $<asp:Label ID="LblPU_AxCantidad" runat="server" Text='<%#(float.Parse(Eval("PU_A").ToString())) %>' />
-                        <!-- *int.Parse(Eval("Cantidad").ToString()) -->
+                        $<asp:Label ID="LblPU_AxCantidad" runat="server" Text='<%#(float.Parse(Eval("PU_A").ToString())*int.Parse(Eval("Cantidad").ToString())) %>' />
                         <asp:Button ID="BtnQuitarCarrito" runat="server" Text="Quitar del Carrito" CommandArgument='<%# Eval("Cod_A") %>' CommandName="eventoButtonQuitar" OnCommand="BtnQuitarCarrito_Command" />
                     </td>
                 </ItemTemplate>

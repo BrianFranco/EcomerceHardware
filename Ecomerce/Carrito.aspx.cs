@@ -13,7 +13,6 @@ namespace Ecomerce
     public partial class Carrito : System.Web.UI.Page
     {
         NegocioArticulo NegArticulo = new NegocioArticulo();
-
         protected void Page_Load(object sender, EventArgs e)
         {
             Usuario U = new Usuario();
@@ -62,7 +61,6 @@ namespace Ecomerce
             Usuario U = Session["Usuario"] as Usuario;
             Dictionary<int, int> dic = (Dictionary<int, int>)Application[$"Carrito{U.Dni_U}"];
             DataTable dt = NegArticulo.GetArticulosCarrito(dic);
-
             DlCarrito.DataSource = dt;
             DlCarrito.DataBind();
         }
@@ -72,8 +70,6 @@ namespace Ecomerce
             if (e.CommandName == "eventoImagen")
             {
                 HttpCookie ck;
-                if (this.Request.Cookies["Seleccionado"] == null)
-                {
                     ck = new HttpCookie("Seleccionado")
                     {
                         Value = e.CommandArgument.ToString(),
@@ -128,18 +124,18 @@ namespace Ecomerce
                 else
                 {
                     dic[cod_a]--;
+                        dic.Add(cod_a, 1);
+                    }
                     Application[$"Carrito{U.Dni_U}"] = dic;
                     CargarCarrito();
+
                     CargarTotal();
                 }
-
             }
         }
 
         protected void BtnQuitarCarrito_Command(object sender, CommandEventArgs e)
         {
-            if (e.CommandName == "eventoButtonQuitar")
-            {
                 QuitarProductoCarrito(int.Parse(e.CommandArgument.ToString()));
             }
         }
@@ -193,6 +189,8 @@ namespace Ecomerce
             else
             {
                 LblMsj.Text = "Huvo un error al comprar el carrito.";
+                Response.Cookies.Add(ck);
+                Response.Redirect("MostrarProducto.aspx");
             }
         }
     }

@@ -17,6 +17,7 @@ namespace Dao
         }
         public SqlConexion() { }
 
+
         public DataTable ObtenerTablaxConsulta(string consulta)
         {
             DataTable dt = new DataTable();
